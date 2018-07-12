@@ -297,7 +297,7 @@ if (ALT_POT_Val >= ALT_POT_HOME)
   while (ALT_POT_Val > ALT_POT_HOME)
   {
     stepper_ALT.moveTo(ALT_initial_homing);  // Set the position to move to
-    ALT_initial_homing++;  // Decrease by 1 for next move if needed
+    ALT_initial_homing++;  // Increase by 1 for next move if needed
     stepper_ALT.run();  // Start moving the stepper
     delay(5); 
     ALT_POT_Val = analogRead(ALT_POT);
