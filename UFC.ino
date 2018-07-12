@@ -1,7 +1,7 @@
 /*
- * DCS Bios version 0.7.1
+ *  DCS Bios version 0.7.1
  * 
- *  Up Front Controller, Hud Annunciators, Altimeter     
+ *  Up Front Controller, Hud Annunciators, Altimeter,     
  *  Verticle Speed Indicator, and HSI Bearing Pointer
  *  
  *  Stepper Motor VID29-05P (Can be directly driven by MCU):
@@ -24,6 +24,7 @@
 #include <LiquidCrystal_I2C.h>
 
 // 0x3F was the 16x2 LCD
+// 0x27 is the 20x4 LCD
 LiquidCrystal_I2C  lcd(0x27,2,1,0,4,5,6,7); // 0x27 came from running I2C address scanner
 
 // Motor pin definitions
@@ -71,7 +72,7 @@ int DH_Flag = A13; // decision height annunciator
 int ALT_Flag = A12;  // Altimeter On/Off Flag
 int ALT_POT = A11; // stepper motor position potentiometer
 int ALT_POT_Val = 0; 
-int ALT_POT_HOME = 292; // Home number value changrd between sessions
+int ALT_POT_HOME = 292; // Home number value changed between sessions. (POT gear was slipping, tighten it to fix)
 
 // Define pin used for proximity switch
 #define BRG_home_switch A10
@@ -389,7 +390,7 @@ DcsBios::IntegerBuffer hsiBearing1Buffer(0x104e, 0xffff, 0, onHsiBearing1Change)
 void onAltMslFtChange(unsigned int new_ALT_Value) {
   unsigned int ALT_Value = (new_ALT_Value & 0xffff) >> 0;
 
-// was 2570
+// Started with 2622 but kept lowering it by trial and error till it matched sim.  2535 worked best
 
   int ALT_targetPosition = -(map(ALT_Value, 0, 65535, 0, 2535));
 
