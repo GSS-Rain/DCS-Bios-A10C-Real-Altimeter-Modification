@@ -1,4 +1,9 @@
 /*
+ *  GSS Rain in the DCS Forums
+ *  Joe Sim on Yotube
+ *  https://youtu.be/lw9yQfgGW0E
+ *
+ *  DCS World version 2.5.4xxxx
  *  DCS Bios version 0.7.1
  * 
  *  Up Front Controller, Hud Annunciators, Altimeter,     
